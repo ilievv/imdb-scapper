@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const wait = function(time) {
     return new Promise((resolve) => {
