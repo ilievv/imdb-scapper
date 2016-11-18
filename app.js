@@ -48,7 +48,5 @@ function getMoviesFromUrl(url) {
         });
 }
 
-const asyncPagesCount = 15;
-
-Array.from({ length: asyncPagesCount })
+Array.from({ length: constants.asyncPagesCount })
     .forEach(() => getMoviesFromUrl(urlsQueue.pop()));
