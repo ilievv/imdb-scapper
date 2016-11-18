@@ -52,10 +52,6 @@ let MovieDetailsSchema = new Schema({
         [ActorSchema]
 });
 
-// ActorSchema.virtual.imdbUrl = function() {
-//     return `http://www.imdb.com/name/${this.imdbUrl}/?ref_=tt_ov_st_sm`;
-// };
-
 mongoose.model("MovieDetails", MovieDetailsSchema);
 MovieDetails = mongoose.model("MovieDetails");
 module.exports = MovieDetails;
