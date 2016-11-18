@@ -53,7 +53,7 @@ let MovieDetailsSchema = new Schema({
 let MovieDetails;
 MovieDetailsSchema.statics.getMovieDetails  =
     function(image, trailer, title, description, genres, releaseDate, actors) {
-        return new MovieDetails({image, trailer, title, description, genres, releaseDate, actors});
+        return new MovieDetails(image, trailer, title, description, genres, releaseDate, actors);
     };
 
 MovieDetailsSchema.virtual.imdbUrl = function() {
