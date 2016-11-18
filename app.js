@@ -11,17 +11,9 @@ require("./config/mongoose")(constants.connectionString);
 
 let urlsQueue = queuesFactory.getQueue();
 
-function wait(time) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, time);
-    });
-}
-
 constants.genres.forEach(genre => {
     for (let i = 0; i < constants.pagesCount; i += 1) {
-        let url = `http://www.imdb.com/search/title?genres=${genre}&title_type=feature&0sort=moviemeter,asc&page=${i+1}&view=simple&ref_=adv_nxt`;
+        let url = constants.searchUrl({ genre: genre, page: i + 1 });
         urlsQueue.push(url);
     }
 });
