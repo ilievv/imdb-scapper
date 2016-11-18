@@ -41,9 +41,7 @@ ActorsSchema.statics.getActors  =
         return new Actors(profileImage, name, biography, movies);
     };
 
-ActorsSchema.virtual.imdbUrl = function() {
-    return `http://www.imdb.com/name/${this.imdbId}/?ref_=nv_sr_2`;
-};
+//`http://www.imdb.com/name/${this.imdbId}/?ref_=nv_sr_2`
 
 mongoose.model("Actors", ActorsSchema);
 Actors = mongoose.model("Actors");
