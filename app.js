@@ -13,5 +13,6 @@ constants.genres.forEach(genre => {
     }
 });
 
-Array.from({ length: constants.asyncPagesCount })
-    .forEach(() => simpleMovieScrapper.getMoviesFromUrl(urlsQueue.pop()))
+for (let i = 0; i < constants.asyncPagesCount; i++) {
+    simpleMovieScrapper.getMoviesFromUrl(urlsQueue.pop());
+}

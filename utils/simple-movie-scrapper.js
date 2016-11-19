@@ -12,7 +12,7 @@ const getMoviesFromUrl = function(url) {
     httpRequester
         .get(url)
         .then((result) => {
-            const selector = ".col-title span[title] a";
+            const selector = ".lister-item.mode-advanced .lister-item-content .lister-item-header a";
             const html = result.body;
             return htmlParser.parseSimpleMovie(selector, html);
         })
