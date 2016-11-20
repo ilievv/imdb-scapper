@@ -28,9 +28,9 @@ SimpleMovieSchema.statics.getSimpleMovieByNameAndUrl =
         return new SimpleMovie({ name, imdbId });
     };
 
-SimpleMovieSchema.virtual.imdbUrl = function() {
-    return `http://imdb.com/title/${this.imdbId}/?ref_=adv_li_tt`;
-};
+SimpleMovieSchema.virtual('imdbUrl').get(function() {
+    return `http://imdb.com/title/${this.imdbId}`
+});
 
 mongoose.model("SimpleMovie", SimpleMovieSchema);
 SimpleMovie = mongoose.model("SimpleMovie");
