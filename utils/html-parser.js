@@ -31,22 +31,15 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
     let titleSeparatorIndex = fullTitle.indexOf('&');
     let movieTitle = fullTitle.substring(0, titleSeparatorIndex);
 
-    console.log(movieTitle);
-
     let fullReleaseDate = $(`${detailsSelector} .subtext a[title="See more release dates"]`).html();
     let releaseDateSeparator = fullReleaseDate.indexOf('(');
     let releaseDate = fullReleaseDate.substring(0, releaseDateSeparator - 1);
 
-    console.log(releaseDate);
-
     let description = $(`${detailsSelector} .plot_summary .summary_text`).html().trim();
-    console.log(description);
 
     let imgUrl = $(`${detailsSelector} .poster a img`).attr("src");
-    console.log(imgUrl);
 
     let trailerUrl = $(`${detailsSelector} .slate a`).attr("href");
-    console.log(trailerUrl);
 
     let genresSelector = $(`${detailsSelector} .subtext a span.itemprop[itemprop="genre"]`);
 
@@ -58,8 +51,6 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
                 genres.push(genresSelector[key].innerHTML);
             }
         });
-
-    console.log(genres);
 
     let actors = [];
     $(`${actorsSelector} tr.odd, tr.even`)
