@@ -15,7 +15,8 @@ let MovieSchema = new Schema({
     },
     nameOfCharacter: {
         type: String,
-        required: true
+        required: false,
+        default: "no information"
     }
 });
 

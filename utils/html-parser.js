@@ -100,8 +100,27 @@ module.exports.parseActorsMovie = (actorsSelector, moviesSelector, html) => {
 
     let selectingHtmlElementsRegex = /<[^>]*>/g;
     let biography = $(`${actorsSelector} tbody tr #overview-top .txt-block .name-trivia-bio-text .inline`).html().replace(selectingHtmlElementsRegex, "");
-    let indexOfSeeFullBio = biography.indexOf("See full bio") || biography.length;
+    let indexOfSeeFullBio = biography.indexOf("See full bio");
+
+    if (indexOfSeeFullBio === -1) {
+        indexOfSeeFullBio = biography.length
+    }
     biography = biography.substring(0, indexOfSeeFullBio);
+
+    let moviesDetails = [];
+    let movieName = $(`${moviesSelector} div b a`).html();
+
+    let movieId = $(`${moviesSelector} div b a`).attr("href");
+    movieId = extractImdbIdFromUrl(movieId);
+
+    function extractImdbIdFromUrl(url) {
+        let index = url.indexOf("/?ref");
+        return url.substring("/title/".length, index);
+    }
+    moviesDetails = {
+        movieName: movieName,
+        movieImdbId: movieId
+    };
 
     return Promise.resolve()
         .then(() => {
@@ -109,7 +128,7 @@ module.exports.parseActorsMovie = (actorsSelector, moviesSelector, html) => {
                 profileImage: profileImgUrl,
                 name: actorName,
                 biography: biography,
-                movies: []
+                movies: [moviesDetails]
             }
         })
 }
