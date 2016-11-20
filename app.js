@@ -29,5 +29,5 @@ require("./config/mongoose")(constants.connectionString({ collection: "simplemov
 
 // detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt0094226/");
 
-// detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt1878870");
-actorsMovieScrapper.getMovieActorsFromUrl("http://www.imdb.com/name/nm0000375");
+detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt4034228/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2495768482&pf_rd_r=1Y0WZ48A1DC5CM0SS4SE&pf_rd_s=right-4&pf_rd_t=15061&pf_rd_i=homepage&ref_=hm_otw_t3");
+// actorsMovieScrapper.getMovieActorsFromUrl("http://www.imdb.com/name/nm0000375");

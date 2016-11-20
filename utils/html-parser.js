@@ -60,7 +60,31 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
         });
 
     console.log(genres);
-    const movie = {};
+
+    let actors = [];
+    $(`${actorsSelector} tr.odd, tr.even`)
+        .each((_, el) => {
+            let actorName = $(el).find("td.itemprop a span.itemprop").html();
+
+            if (!actorName) {
+                return;
+            }
+
+            const noPictureUrl = "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB527145656_.png";
+            let actorPictureUrl = ($(el).find("td.primary_photo a img").attr("loadlate")) || noPictureUrl;
+
+            let roleName =
+                $(el).find("td.character div a").html() ||
+                $(el).find("td.character div").html();
+
+            let roleNameSeparatorIndex = roleName.indexOf("(");
+
+            roleName = roleName
+                .substring(0, roleNameSeparatorIndex == -1 ? roleName.length : roleNameSeparatorIndex)
+                .trim();
+
+            actors.push({ actorName, actorPictureUrl, roleName });
+        });
 
     return Promise.resolve()
         .then(() => {
@@ -71,7 +95,7 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
                 trailerUrl: trailerUrl || null,
                 releaseDate: releaseDate,
                 genres: genres,
-                actors: []
+                actors: actors
             }
         })
 }
