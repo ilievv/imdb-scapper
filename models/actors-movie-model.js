@@ -17,14 +17,14 @@ let MovieSchema = new Schema({
         type: String,
         required: true
     }
-});    
+});
 
 let ActorsSchema = new Schema({
-     profileImage: {
+    profileImage: {
         type: String,
         required: true
     },
-     name: {
+    name: {
         type: String,
         required: true
     },
@@ -36,12 +36,10 @@ let ActorsSchema = new Schema({
 });
 
 let Actors;
-ActorsSchema.statics.getActors  =
+ActorsSchema.statics.getActors =
     function() {
         return new Actors(profileImage, name, biography, movies);
     };
-
-//`http://www.imdb.com/name/${this.imdbId}/?ref_=nv_sr_2`
 
 mongoose.model("Actors", ActorsSchema);
 Actors = mongoose.model("Actors");

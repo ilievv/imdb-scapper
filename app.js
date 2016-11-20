@@ -1,5 +1,6 @@
 const simpleMovieScrapper = require("./utils/simple-movie-scrapper");
 const detailedMovieScrapper = require("./utils/detailed-movie-scrapper");
+const actorsMovieScrapper = require("./utils/actors-movie-scrapper")
 const constants = require("./config/constants");
 // const queuesFactory = require("./data-structures/queue");
 
@@ -28,4 +29,5 @@ require("./config/mongoose")(constants.connectionString({ collection: "simplemov
 
 // detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt0094226/");
 
-detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt1878870");
+// detailedMovieScrapper.getMovieDetailsFromUrl("http://www.imdb.com/title/tt1878870");
+actorsMovieScrapper.getMovieActorsFromUrl("http://www.imdb.com/name/nm0000375");

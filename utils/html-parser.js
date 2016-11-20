@@ -37,7 +37,7 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
     let releaseDateSeparator = fullReleaseDate.indexOf('(');
     let releaseDate = fullReleaseDate.substring(0, releaseDateSeparator - 1);
 
-    console.log(releaseDate); 
+    console.log(releaseDate);
 
     let description = $(`${detailsSelector} .plot_summary .summary_text`).html().trim();
     console.log(description);
@@ -72,6 +72,29 @@ module.exports.parseDetailedMovie = (detailsSelector, actorsSelector, html) => {
                 releaseDate: releaseDate,
                 genres: genres,
                 actors: []
+            }
+        })
+}
+
+module.exports.parseActorsMovie = (actorsSelector, moviesSelector, html) => {
+    $("body").html(html);
+
+    let profileImgUrl = $(`${actorsSelector} tbody tr #img_primary .image a img`).attr("src");
+
+    let actorName = $(`${actorsSelector} tbody tr #overview-top .header span`).html();
+
+    let selectingHtmlElementsRegex = /<[^>]*>/g;
+    let biography = $(`${actorsSelector} tbody tr #overview-top .txt-block .name-trivia-bio-text .inline`).html().replace(selectingHtmlElementsRegex, "");
+    let indexOfSeeFullBio = biography.indexOf("See full bio") || biography.length;
+    biography = biography.substring(0, indexOfSeeFullBio);
+
+    return Promise.resolve()
+        .then(() => {
+            return {
+                profileImage: profileImgUrl,
+                name: actorName,
+                biography: biography,
+                movies: []
             }
         })
 }
