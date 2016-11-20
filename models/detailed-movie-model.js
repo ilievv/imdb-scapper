@@ -4,25 +4,6 @@
 const mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
-let ActorSchema = new Schema({
-    nameOfRole: {
-        type: String,
-        required: true
-    },
-     name: {
-        type: String,
-        required: true
-    },
-     profileImage: {
-        type: String,
-        required: true
-    },
-    imdbId: {
-        type: String,
-        required: true
-    }
-});
-
 let MovieDetailsSchema = new Schema({
     image: {
         type: String,
@@ -32,28 +13,27 @@ let MovieDetailsSchema = new Schema({
         type: String,
         required: true
     },
-     title: {
+    title: {
         type: String,
         required: true
     },
-     description: {
+    description: {
         type: String,
         required: true
     },
-    genres: [String]
-    ,
-     releaseDate: {
-         type: Date,
+    genres: [String],
+    releaseDate: {
+        type: String,
         required: true
     },
-    actors: 
-        [ActorSchema]
+    actors: [Object]
 });
 
 let MovieDetails;
-MovieDetailsSchema.statics.getMovieDetails  =
+MovieDetailsSchema.statics.getDetailedMovie =
     function(image, trailer, title, description, genres, releaseDate, actors) {
-        return new MovieDetails(image, trailer, title, description, genres, releaseDate, actors);
+        let movie = new MovieDetails(image, trailer, title, description, genres, releaseDate, actors);
+        return movie;
     };
 
 mongoose.model("MovieDetails", MovieDetailsSchema);
